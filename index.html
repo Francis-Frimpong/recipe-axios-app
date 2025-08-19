@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recipe Search</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="header">
+          <h1 class="title">🍽️ Recipe Search</h1>
+          <div class="sub">TheMealDB + Axios</div>
+        </div>
+
+        <form id="mealForm" class="row cols-2">
+          <input id="mealQuery" placeholder="Search by name (e.g. chicken)" />
+          <button class="btn" id="btnMeal">Search</button>
+        </form>
+
+        <div id="mealResults" class="grid" style="margin-top: 1rem"></div>
+
+        <!-- Optional modal for details -->
+        <div id="mealModal" class="modal">
+          <div class="panel">
+            <div class="header">
+              <h2 id="mealTitle" class="title" style="font-size: 1.25rem"></h2>
+              <button id="closeMeal" class="btn-ghost">Close</button>
+            </div>
+            <img id="mealImg" alt="" />
+            <p id="mealInstructions"></p>
+            <div id="mealIngredients" class="grid"></div>
+          </div>
+        </div>
+
+        <div id="mealError" class="footer-note"></div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
