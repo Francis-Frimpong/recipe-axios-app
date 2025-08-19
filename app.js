@@ -1,7 +1,7 @@
 class Recipe {
   constructor(resource, search) {
     this.resource = resource;
-    this.search = search;
+    this.search = search.value;
   }
 
   async getApi() {
@@ -12,25 +12,28 @@ class Recipe {
   }
 
   displayResults() {
-    this.getApi().then((data) => {
-      for (const meal of data.meals) {
-        console.log(meal.strMeal);
-        console.log(meal.strInstructions);
-      }
-    });
+    this.getApi()
+      .then((data) => {
+        for (const meal of data.meals) {
+          console.log(meal.strMeal);
+          console.log(meal.strInstructions);
+        }
+      })
+      .catch((err) => {
+        console.log("Recipe can't be found!");
+      });
   }
 }
 
-const recipe = new Recipe(
-  "https://www.themealdb.com/api/json/v1/1/search.php",
-  "chicken"
-);
+const form = document.getElementById("mealForm");
+const mealQuery = document.getElementById("mealQuery");
 
-recipe.displayResults();
-
-axios
-  .get("https://www.themealdb.com/api/json/v1/1/search.php", {
-    params: { s: "chicken" },
-  })
-  .then((res) => console.log(res.data))
-  .catch((err) => console.error(err));
+form.addEventListener("submit", (e) => {
+  const recipe = new Recipe(
+    "https://www.themealdb.com/api/json/v1/1/search.php",
+    mealQuery
+  );
+  e.preventDefault();
+  recipe.displayResults();
+  mealQuery.value = "";
+});
