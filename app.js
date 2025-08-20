@@ -19,8 +19,11 @@ class Recipe {
 
         for (const meal of data.meals) {
           // creating elements
+          // console.log(meal.strMealThumb);
           const div = document.createElement("div");
           div.classList.add("card");
+          const imgThumb = document.createElement("img");
+          imgThumb.src = meal.strMealThumb;
           const h1 = document.createElement("h1");
           h1.style.alignItems = "center";
           h1.textContent = meal.strMeal;
@@ -28,6 +31,7 @@ class Recipe {
           p.style.fontSize = "1.3rem";
           p.textContent = meal.strInstructions;
 
+          div.appendChild(imgThumb);
           div.appendChild(h1);
           div.appendChild(p);
 
