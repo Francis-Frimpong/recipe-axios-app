@@ -14,13 +14,30 @@ class Recipe {
   displayResults() {
     this.getApi()
       .then((data) => {
+        document.getElementById("mealResults").innerHTML = "";
+        document.getElementById("mealError").innerHTML = "";
+
         for (const meal of data.meals) {
-          console.log(meal.strMeal);
-          console.log(meal.strInstructions);
+          // creating elements
+          const div = document.createElement("div");
+          div.classList.add("card");
+          const h1 = document.createElement("h1");
+          h1.style.alignItems = "center";
+          h1.textContent = meal.strMeal;
+          const p = document.createElement("p");
+          p.style.fontSize = "1.3rem";
+          p.textContent = meal.strInstructions;
+
+          div.appendChild(h1);
+          div.appendChild(p);
+
+          document.getElementById("mealResults").appendChild(div);
         }
       })
       .catch((err) => {
-        console.log("Recipe can't be found!");
+        document.getElementById("mealError").textContent =
+          "Recipe can't be found!";
+        // console.log("Recipe can't be found!");
       });
   }
 }
